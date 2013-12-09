@@ -55,7 +55,6 @@ class Mage_GoogleShopping_Model_Attribute_Availability extends Mage_GoogleShoppi
          
         $quantity = (int) $connection->fetchOne($query);
 
-        Mage::log('quantity:'.$quantity);
 
         $isSalable = ($quantity > 0) ? 1 : 0;
 
