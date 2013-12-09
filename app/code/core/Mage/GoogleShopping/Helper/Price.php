@@ -63,12 +63,12 @@ class Mage_GoogleShopping_Helper_Price
                 foreach ($subProducts as $subProduct) {
                     $subProduct->setWebsiteId($product->getWebsiteId())
                         ->setCustomerGroupId($product->getCustomerGroupId());
-                   // if ($subProduct->isSalable()) {
+                    if ($subProduct->isSalable()) {
                         if ($this->getCatalogPrice($subProduct) < $minPrice || $minPrice === null) {
                             $minPrice = $this->getCatalogPrice($subProduct);
                             $product->setTaxClassId($subProduct->getTaxClassId());
                         }
-                   // }
+                    }
                 }
                 return $minPrice;
 

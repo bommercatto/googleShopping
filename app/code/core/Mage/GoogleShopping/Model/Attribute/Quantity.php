@@ -47,7 +47,7 @@ class Mage_GoogleShopping_Model_Attribute_Quantity extends Mage_GoogleShopping_M
         
         $connection = Mage::getSingleton('core/resource')->getConnection('core_read');
          
-        $query = "SELECT countStock(".$product->getSku()."";
+        $query = "SELECT countStock(".$product->getSku().")";
          
         $quantity = (int) $connection->fetchOne($query);
         
