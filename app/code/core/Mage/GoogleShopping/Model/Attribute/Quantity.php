@@ -51,6 +51,9 @@ class Mage_GoogleShopping_Model_Attribute_Quantity extends Mage_GoogleShopping_M
     	
     	$quantity = (int) $readConnection->fetchOne($query);
     	
+    	Mage::log('quantity');
+    	Mage::log($quantity);
+    	
 		//$quantity = $product->getStockItem()->getQty();
         if ($quantity) {
             $value = $quantity ? max(1, (int) $quantity) : 1;
