@@ -47,7 +47,20 @@ class Mage_GoogleShopping_Model_Attribute_Availability extends Mage_GoogleShoppi
      */
     public function convertAttribute($product, $entry)
     {
-        $value = $this->_googleAvailabilityMap[(int)$product->isSalable()];
+
+
+        $connection = Mage::getSingleton('core/resource')->getConnection('core_read');
+         
+        $query = "SELECT countStock(".$product->getSku()."";
+         
+        $quantity = (int) $connection->fetchOne($query);
+
+        $isSalable = ($quantity > 0) ? 1 : 0;
+
+        //$value = $this->_googleAvailabilityMap[(int)$product->isSalable()];
+       
+        $value = $this->_googleAvailabilityMap[$isSalable];
+        
         $this->_setAttribute($entry, 'availability', self::ATTRIBUTE_TYPE_TEXT, $value);
         return $entry;
     }
