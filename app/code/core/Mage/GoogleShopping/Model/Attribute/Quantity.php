@@ -50,6 +50,8 @@ class Mage_GoogleShopping_Model_Attribute_Quantity extends Mage_GoogleShopping_M
         $query = "SELECT countStock(".$product->getSku().")";
          
         $quantity = (int) $connection->fetchOne($query);
+
+        Mage::log('quantity:'.$quantity);
         
         if ($quantity) {
             $value = $quantity ? max(1, (int) $quantity) : 1;
