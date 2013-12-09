@@ -42,19 +42,7 @@ class Mage_GoogleShopping_Model_Attribute_Quantity extends Mage_GoogleShopping_M
      */
     public function convertAttribute($product, $entry)
     {
-    	
-    	// updated to marketplace logic
-    	
-    	$connection = Mage::getSingleton('core/resource')->getConnection('core_read');
-    	
-    	$query = "SELECT countStock( ".$product->getSku()." )";
-    	
-    	$quantity = (int) $readConnection->fetchOne($query);
-    	
-    	Mage::log('quantity');
-    	Mage::log($quantity);
-    	
-		//$quantity = $product->getStockItem()->getQty();
+        $quantity = $product->getStockItem()->getQty();
         if ($quantity) {
             $value = $quantity ? max(1, (int) $quantity) : 1;
             $this->_setAttribute($entry, 'quantity', self::ATTRIBUTE_TYPE_INT, $value);
